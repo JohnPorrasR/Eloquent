@@ -11,7 +11,7 @@
             {{ $category->num_books }}
         </p>
         <ul>
-            @foreach($category->books as $book)
+            @foreach($category->books_public as $book)
                 <li>
                     <strong>{{ $book->title }}</strong>
                     <p>{{ $book->description }} - {{ $book->status }}</p>

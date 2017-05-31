@@ -18,12 +18,12 @@ class User extends Authenticatable
         'name', 'email', 'password','gender','biography',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function books(){
+        return $this->belongsToMany(Book::class);
+    }
+
 }

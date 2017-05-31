@@ -14,6 +14,14 @@ $factory->define(EloquentORM\User::class, function (Faker\Generator $faker) {
     ];
 });
 
+
+
+$factory->define(EloquentORM\Category::class, function (Faker\Generator $faker){
+    return [
+        'name' => $faker->name,
+    ];
+});
+
 $factory->define(EloquentORM\Book::class, function (Faker\Generator $faker){
     return [
         'title' => $faker->name,

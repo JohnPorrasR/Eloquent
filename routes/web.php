@@ -6,8 +6,14 @@ use Faker\Factory as Faker;
 use EloquentORM\Category;
 
 Route::get('/', function(){
-    $categories = Category::whereHas('books', function($query){
-        $query->where('status','public');
+    $users = User::all();
+    return view('manytomany', compact('users'));
+});
+
+Route::get('/relationship', function(){
+
+    $categories = Category::whereHas('books', function ($query) {
+        $query->where('status', 'public');
     })->get();
     return view('relationship', compact('categories'));
     //$books = Book::all();
