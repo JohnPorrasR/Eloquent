@@ -4,8 +4,41 @@ use EloquentORM\User;
 use EloquentORM\Book;
 use Faker\Factory as Faker;
 use EloquentORM\Category;
+use EloquentORM\Page;
+use EloquentORM\Post;
+use EloquentORM\Video;
+use EloquentORM\Tag;
 
-Route::get('/', function(){
+
+Route::get('/', function ()
+{
+    $post = Post::first();
+    echo 'POST: ' . $post->title;
+    foreach($post->tags as $tag){
+        echo '<li>' . $tag->title . '</li>';
+    }
+    $video = Video::first();
+    echo 'VIDEO: ' . $video->title;
+    foreach($video->tags as $tag){
+        echo '<li>' . $tag->title . '</li>';
+    }
+});
+
+Route::get('/morph', function ()
+{
+    $page = Page::find(6);
+    echo $page->name;
+    foreach($page->comments as $comment){
+        echo '<li>' . $comment->body . '</li>';
+    }
+});
+
+Route::get('/queryBuilder', function(){
+    $users = User::all();
+    return view('queryBuilder.index', compact('users'));
+});
+
+Route::get('/manytomany', function(){
     $users = User::all();
     return view('manytomany', compact('users'));
 });
